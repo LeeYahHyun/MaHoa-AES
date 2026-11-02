@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AES-128 Encryption</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f1f5f9;
+        min-height: 100vh;
+        padding: 50px 20px;
+        color: #1e293b;
+      }
+
+      .container {
+        max-width: 850px;
+        margin: auto;
+      }
+
+      /* Header */
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        font-size: 30px;
+        color: #1e3a8a;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      .header .subtitle {
+        margin-top: 8px;
+        font-weight: bold;
+        color: #475569;
+      }
+
+      /* Main card */
+      .card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+      }
+
+      .section {
+        margin-bottom: 22px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+
+      textarea,
+      input {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 7px;
+        padding: 13px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: 0.2s;
+      }
+
+      textarea {
+        height: 130px;
+        resize: vertical;
+      }
+
+      input {
+        height: 45px;
+      }
+
+      textarea:focus,
+      input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      textarea::placeholder,
+      input::placeholder {
+        color: #94a3b8;
+      }
+
+      /* Buttons */
+      .actions {
+        display: flex;
+        gap: 15px;
+        margin: 25px 0;
+      }
+
+      button {
+        flex: 1;
+        padding: 13px;
+        border: none;
+        border-radius: 7px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn-encrypt {
+        background: #2563eb;
+        color: white;
+      }
+
+      .btn-encrypt:hover {
+        background: #1d4ed8;
+      }
+
+      .btn-decrypt {
+        background: #059669;
+        color: white;
+      }
+
+      .btn-decrypt:hover {
+        background: #047857;
+      }
+
+      /* Output */
+      #output {
+        background: #f8fafc;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 22px;
+        font-size: 12px;
+        color: #94a3b8;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 25px 12px;
+        }
+
+        .card {
+          padding: 20px;
+        }
+
+        .header h1 {
+          font-size: 24px;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Tiêu đề -->
+      <div class="header">
+        <h1>MÃ HÓA AES-128</h1>
+
+        <p class="subtitle">Advanced Encryption Standard</p>
+
+        <p>Hệ thống mã hóa và giải mã dữ liệu sử dụng thuật toán AES-128 CBC</p>
+      </div>
+
+      <!-- Nội dung chính -->
+      <div class="card">
+        <!-- Đầu vào -->
+        <div class="section">
+          <label for="input"> Nội dung đầu vào </label>
+
+          <textarea
+            id="input"
+            placeholder="Nhập văn bản cần mã hóa hoặc bản mã HEX cần giải mã..."
+          ></textarea>
+        </div>
+
+        <!-- Khóa -->
+        <div class="section">
+          <label for="key"> Khóa mã hóa (AES-128) </label>
+
+          <input type="text" id="key" placeholder="Nhập khóa bảo mật..." />
+        </div>
+
+        <!-- Xử lý -->
+        <div class="actions">
+          <button class="btn-encrypt" onclick="processAES('enc')">
+            Mã hóa
+          </button>
+
+          <button class="btn-decrypt" onclick="processAES('dec')">
+            Giải mã
+          </button>
+        </div>
+
+        <!-- Đầu ra -->
+        <div class="section">
+          <label for="output"> Kết quả xử lý </label>
+
+          <textarea
+            id="output"
+            placeholder="Kết quả sẽ hiển thị tại đây..."
+            readonly
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        AES-128 CBC | Python Implementation | Information Security
+      </div>
+    </div>
+
+    <!-- Kết nối JavaScript -->
+    <script src="/index.js"></script>
+  </body>
+</html>
